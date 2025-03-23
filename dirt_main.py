@@ -1,8 +1,5 @@
 import datetime as dt
-from application import create_pdf
-from application import get_employeers
-from application import calcilate_salary
-
+from application import *
 
 def calculation01():
     staff_data = get_employeers()

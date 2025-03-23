@@ -66,7 +66,7 @@ def is_leap(year):
 
 def split_period(start_data, end_data):
     """
-    Функция разделения периоода
+    Функция разделения периода
     Возвращает список кортежей [(int, [(int, int)])]
     """
     years = [y for y in range(start_data.year, end_data.year+1)]
@@ -108,7 +108,7 @@ def calcilate_salary(person, start_data, end_data):
                 )
             elif year == end_data.year and month[0] == end_data.month:
                 calculated_months.append(
-                    Calc_month(year, month, (1, end_data.month))
+                    Calc_month(year, month, (1, end_data.day))
                 )
             else:
                 calculated_months.append(
