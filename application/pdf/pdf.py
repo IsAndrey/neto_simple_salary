@@ -12,6 +12,15 @@ from borb.pdf import Alignment
 from pathlib import Path
 
 
+Russian_Fonts = {
+    'arial': TrueTypeFont.true_type_font_from_file(
+        Path(__file__).parent / 'fonts' / 'arial.ttf'
+    ),
+    'arial_bold': TrueTypeFont.true_type_font_from_file(
+        Path(__file__).parent / 'fonts' / 'arialbd.ttf'
+    ),
+}
+
 def create_pdf(**params):
     """
     Параметры
@@ -23,10 +32,12 @@ def create_pdf(**params):
     """
     document = Document()
     page = Page()
+    '''
     path = Path(__file__).parent / 'fonts' / 'arial.ttf'
     arial_font = TrueTypeFont.true_type_font_from_file(path)
     path = Path(__file__).parent / 'fonts' / 'arialbd.ttf'
     arialbd_font = TrueTypeFont.true_type_font_from_file(path)
+    '''
 
     # Layout
     layout = SingleColumnLayout(page)
@@ -37,7 +48,7 @@ def create_pdf(**params):
         layout.add(
             Paragraph(
                 title,
-                font=arialbd_font,
+                font=Russian_Fonts['arial_bold'],
                 font_size=Decimal(20),
                 horizontal_alignment=Alignment.CENTERED
             )
@@ -65,7 +76,7 @@ def create_pdf(**params):
                     Paragraph(
                         colum_name,
                         font_color=X11Color('White'),
-                        font=arialbd_font,
+                        font=Russian_Fonts['arial'],
                         horizontal_alignment=alignment
                     ),
                     background_color=X11Color('SkyBlue')
@@ -80,7 +91,7 @@ def create_pdf(**params):
                     val = row[col]
                 if col == len(row)-2:
                     alignment = Alignment.RIGHT
-                table.add(Paragraph(str(val), font=arial_font, horizontal_alignment=alignment))
+                table.add(Paragraph(str(val), font=Russian_Fonts['arial'], horizontal_alignment=alignment))
 
         # Set padding
         table.set_padding_on_all_cells(Decimal(5), Decimal(5), Decimal(5), Decimal(5))
